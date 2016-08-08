@@ -68,7 +68,7 @@ CLOSE test_cursor;
 
 END;
 /
-
+-- CURSOR W FOR
 DECLARE 
 
 CURSOR test_cursor IS
@@ -80,5 +80,99 @@ FOR vi_counter IN test_cursor  LOOP
 
 END LOOP; 
 END;
--- STRONA 364
+/
+-- FOR OPEN CURSOR
+DECLARE
 
+type t_produce_cursor is
+ref cursor return employees%ROWTYPE; 
+
+v_produce_cursor t_produce_cursor; 
+
+v_employees employees%rowtype;
+BEGIN
+
+open v_produce_cursor FOR
+select * from employees;
+loop
+
+fetch v_produce_cursor into v_employees;
+exit when v_produce_cursor%NOTFOUND;
+dbms_output.put_line(v_employees.first_name || ' ' || v_employees.last_name);
+
+END LOOP;
+
+
+CLOSE v_produce_cursor;
+END;
+/
+
+-- CURSOR BEZ OGRANICZEN
+
+DECLARE
+
+TYPE t_cursor IS REF CURSOR;
+v_cursor t_cursor;
+v_employees employees%ROWTYPE;
+BEGIN
+
+OPEN v_cursor FOR 
+SELECT * FROM employees;
+LOOP
+FETCH v_cursor INTO v_employees;
+EXIT WHEN v_cursor%NOTFOUND;
+dbms_output.put_line('Imie: ' || v_employees.first_name || ' Nazwisko: ' || v_employees.last_name);
+END LOOP;
+
+CLOSE v_cursor;
+
+END;
+/
+
+-- wyjatki
+
+-- procedury
+create or replace PROCEDURE prcedura_adam
+as
+begin
+
+dbms_output.put_line(1/0);
+
+end;
+
+/
+begin
+prcedura_adam; -- wywoanie procedury
+end;
+/
+select * from user_procedures -- informacje o procedurach funkcjach widokach
+/
+show errors
+/
+-- trigery
+
+CREATE OR REPLACE TRIGGER test_trigger_as
+before  update
+ON EMPLOYEES
+for each ROW
+when (old.employee_id >= 10)
+begin
+
+dbms_output.put_line('trigger');
+end test_trigger_as;
+/
+select * from EMPLOYEES where employee_id = 22
+/
+update employees 
+set
+first_name = 'smigacz' 
+where employee_id = 108
+/
+drop trigger test_trigger_as -- usuwanie triggera
+/
+select * from user_triggers
+/
+alter trigger test_trigger_as enable; -- waczenie trigera
+/
+alter trigger test_trigger_as disable; -- wyaczenie triggera
+-- strona 388
