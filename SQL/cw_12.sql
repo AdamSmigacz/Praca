@@ -153,3 +153,65 @@ not substitutable at all levels
 -- funkcja is of() sprawdza czy dany obiekt jest danego typu. Normanie zwraca typy podrzedne i nadrzedne np Is of(t_persons)
 
 --Is of( ONLY t_persons) mozna wstawiac tylko t_persons. Typy podrzedne nie wejda
+
+-- sys_typeid zwraca identyfikator obiektu
+
+-- not instantable zapobiega tworzeniu obiektow danego typu
+
+--konstruktory definiowane przez uzytkownika  (w konstruktorach bez specyfikacji)
+CREATE TYPE  t_person2 AS OBJECT(
+ID INTEGER,
+first_name VARCHAR2(10),
+last_name VARCHAR2(10),
+dob DATE ,
+phone VARCHAR2(12) ,
+
+CONSTRUCTOR FUNCTION t_person2(
+p_id INTEGER,
+p_first_name VARCHAR2,
+p_last_name VARCHAR2) RETURN SELF AS RESULT ,
+
+CONSTRUCTOR FUNCTION t_person2(
+p_id INTEGER,
+p_first_name VARCHAR2,
+p_last_name VARCHAR2,
+p_dob DATE ) RETURN SELF AS RESULT);
+/
+
+CREATE or replace TYPE BODY t_person2 AS 
+
+    CONSTRUCTOR FUNCTION t_person2(
+    p_id INTEGER,
+    p_first_name VARCHAR2,
+    p_last_name VARCHAR2 ) RETURN SELF AS RESULT IS
+    BEGIN
+            SELF.id :=p_id;
+            SELF.first_name := p_first_name;
+            SELF.last_name := p_last_name;
+            SELF.dob := sysdate;
+            SELF. phone := '555-1212';
+        RETURN;
+    END;
+
+    CONSTRUCTOR FUNCTION t_person2(
+    p_id INTEGER,
+    p_first_name VARCHAR2,
+    p_last_name VARCHAR2,
+    p_dob DATE) RETURN SELF AS RESULT is
+    BEGIN
+
+            SELF.id := p_id;
+            SELF.first_name := p_first_name;
+            SELF.last_name := p_last_name;
+            SELF.dob := p_dob;
+            SELF. phone := '555-1212';
+        RETURN;
+    END;
+END;
+/
+
+-- 'OVERRIDING' w metodzie typu pochodnego pozwala na nadpisanie metody z ztypu podstawowego
+-- (SELF AS typ_podstawowy).metoda  --- wyswietlenie metody podstawowej
+
+
+
