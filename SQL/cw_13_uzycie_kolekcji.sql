@@ -69,19 +69,6 @@ END;
 -- TRIM
 /
 
-CREATE TYPE x_varray AS VARRAY(10) OF INTEGER
-/
-CREATE TYPE y_varray AS VARRAY(10) OF x_varray
-
-/
-DECLARE
-
-y_varray  := xy_varray(10)(10);
-BEGIN
-null;
---xy_varray(0)(0):= 1;
-END;
-/
 -- tablice asocjacyjne
 
 CREATE OR REPLACE PROCEDURE customers_assciotative_table
@@ -121,10 +108,10 @@ END;
 
 select * from user_tablespaces
 
---multiset laczy dwie tabela zagniezdzona
+-- multiset laczy dwie tabela zagniezdzona
 -- cardinality zwraca liczbe elementow tabela zagniezdzona
 -- set wyrzuca duplikaty tabela zagniezdzona
 -- is a set sprawdza czy elementy sie nie powtarzaja w tabela zagniezdzona
 -- is empty sprawdza czy tabela zagniezdzona jest pusta
 -- collect cwraca tabela zagniezdzona na podstawie lelementow
---powermultiset zwraca wszystkie kobinacje elementow z tabela zagniezdzona
+-- powermultiset zwraca wszystkie kobinacje elementow z tabela zagniezdzona
