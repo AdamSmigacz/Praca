@@ -1,0 +1,30 @@
+Instalacja i konfiguracja
+
+Instalacja œrodowiska
+Konfiguracja wirtualnych urz¹dzeñ
+Struktura katalogów w aplikacji
+Tworzenie podstawowej aplikacji
+Przegl¹d podstawowych komponentów graficznych
+Korzystanie z komponentów wizualnych w kodzie
+Obs³uga zdarzenia klikniêcia na komponent
+Zasoby tekstowe - wykorzystanie pliku strings.xml
+Szablony kolorów
+Style komponentów
+T³o ekranu aplikacji
+Konfiguracja w³asnego menu
+Ró¿ne layouty w ró¿nych orientacjach
+Wy³¹czenie obracania ekranu w aplikacji
+Uk³ady elementów na ekranie - rodzaje layoutów
+Parametr wrap_content vs fill_parent
+ScrollView - ekran przewijany
+
+Czas na programowanie!
+Wykorzystanie Log.d w debuggowaniu
+Cykl ¿ycia aplikacji
+Komunikaty Toast
+Podpowiedzi w oknach edycyjnych
+Obs³uga zdarzenia klikniêcia na komponent
+Obracanie obrazków i innych komponentów
+Intencje
+Otwieranie przegl¹darki www z aplikacji
+Projekt podsumowuj¹cy
