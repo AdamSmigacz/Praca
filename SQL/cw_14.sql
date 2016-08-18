@@ -271,4 +271,42 @@ COMPARE_EXAMPLE;
 END;
 /
 
-http://andrzejklusiewicz.blogspot.com/2011/11/korzystanie-z-plikow-tekstowych-przy.html
+CREATE TABLE long_content(
+id INTEGER PRIMARY KEY
+, long_column LONG NOT NULL);
+
+CREATE TABLE long__raw_content(
+id INTEGER PRIMARY KEY
+, long_raw_column LONG RAW NOT NULL);
+/
+
+
+INSERT INTO long_content
+VALUES
+(1, 'wije sie w wasnym kolko')
+/
+INSERT INTO long_content
+VALUES
+(2, 'od dnia do dnia')
+/
+INSERT INTO long__raw_content
+VALUES
+(1, '100110011100011010')
+/
+INSERT INTO long__raw_content
+VALUES
+(2, 'A0FBE001290DE')
+/
+ALTER TABLE long__raw_content MODIFY(long_raw_column BLOB)  -- ZMIANA Z RAW NA blob
+/
+create table encrypted_table
+(id INTEGER PRIMARY KEY
+, card_number INTEGER(16,0) ENCRYPT);
+
+--http://andrzejklusiewicz.blogspot.com/2011/11/korzystanie-z-plikow-tekstowych-przy.html
+/
+ALTER SYSTEM SET ENCRYPTION KEY IDENTIFIED BY testpasss123
+
+
+
+-- jak skonfigurowac wallet
