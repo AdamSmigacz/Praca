@@ -9,6 +9,27 @@ class LevelNumber{
 
 public class Operatory {
 
+	public static boolean op1(int val)
+	{
+		System.out.println("Prawdziwosc warunku: " + (val < 1));
+		return val < 1;
+		
+	}
+	
+	public static boolean op2(int val)
+	{
+		System.out.println("Prawdziwosc warunku: " + (val < 2));
+		return val < 2;
+		
+	}
+	
+	public static boolean op3(int val)
+	{
+		System.out.println("Prawdziwosc warunku: " + (val < 3));
+		return val < 3;
+		
+	}
+	
 	public static void showReferenceDifference(){
 		// przy przypisywaniu obiektu do obiektu kopiowana jest referencja!!! A wiec po operacj przypisania zmianay wprowadzane w jednym obiekcie wprowadzane sa tez do drugiego
 		// przypisywanie pol pozwala zachowac oba obiekty
@@ -58,12 +79,13 @@ public class Operatory {
 	
 	
 	public static void main(String[] args) {
-		showReferenceDifference();
+		//showReferenceDifference();
 		//Inkrementacja();
 		//RandomNumbers();
 		
-
-
+		System.out.println("Wynik sprawdzania: " + (op1(0)&&op2(2)&&op3(2))); // trzeci warunek nie by sprawdzany bo juz drugi zwraca false. Przyspieszenie dzialania systemu 
+		
+// strona 128
 	}
 
 }
