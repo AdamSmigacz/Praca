@@ -6,7 +6,7 @@ public class ShowDate {
 
 	public static void main(String[] args) {
 	
-		System.out.println("Czesc, dzis jest: " + new Date());
+		System.out.println("Dzis jest: " + new Date());
 		
 	}
 
