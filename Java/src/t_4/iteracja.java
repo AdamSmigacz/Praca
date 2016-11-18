@@ -5,7 +5,7 @@ import java.util.Random;
 public class iteracja {
 
 	static boolean condition(){
-		boolean result = Math.random()< 0.7;
+		boolean result = Math.random() < 0.7;
 		System.out.println(result + ", ");
 		return result;
 		
