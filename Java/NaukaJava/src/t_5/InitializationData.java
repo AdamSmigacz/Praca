@@ -30,5 +30,4 @@ public class InitializationData {
 	obiekt.printInitialvalues();
 
 	}
-
 }
