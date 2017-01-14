@@ -72,7 +72,7 @@ public class iteracja {
 			System.out.println("Poza petla");
 	
 		}*/
-		//showChar();
+		showChar();
 		//loopForeach();
 		//breakContinue();
 		//switchFunction(4);
