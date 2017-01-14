@@ -6,15 +6,10 @@ enum Wyliczenie{
 public class typyWyliczeniowe {
 
 
-	
 	public static void main(String[] args) {
 		for (Wyliczenie arg : Wyliczenie.values()) {
-			System.out.println(arg + " wyliczenie " + arg.ordinal());
-			
+			System.out.println(arg + " wyliczenie " + arg.ordinal());			
 		}
-
 	}
-
 }
-
 // 185
