@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="t_8.Instrument"/>
+<fullyQualifiedTypeName name="t_8.Wind"/>
+<fullyQualifiedTypeName name="t_8.Triangle"/>
+<fullyQualifiedTypeName name="t_8.Square"/>
+<fullyQualifiedTypeName name="t_8.Note"/>
+<fullyQualifiedTypeName name="t_8.InstrumentM"/>
+<fullyQualifiedTypeName name="t_8.WindM"/>
+<fullyQualifiedTypeName name="t_8.PercusionM"/>
+<fullyQualifiedTypeName name="t_8.StringedM"/>
+<fullyQualifiedTypeName name="t_8.Brass"/>
+<fullyQualifiedTypeName name="t_8.WoodWind"/>
+<fullyQualifiedTypeName name="t_8.PrivateOveride"/>
+<fullyQualifiedTypeName name="t_8.Derived"/>
+<fullyQualifiedTypeName name="t_8.Sub"/>
+</qualifiedTypeNameHistroy>

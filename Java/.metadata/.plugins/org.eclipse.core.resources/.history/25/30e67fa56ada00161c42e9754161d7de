@@ -1,0 +1,22 @@
+package t_8;
+
+enum NoteM{
+	MIDDLE_C, C_SHARP, B_FLAT;
+	
+}
+class InstrumentM {
+	void play(Note n){
+		System.out.println("Instrument.play() " + n);
+	}
+}
+
+
+
+public class Music3 {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
