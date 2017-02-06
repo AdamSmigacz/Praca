@@ -1,5 +1,5 @@
 package t_8;
-
+// polimorfizm to rzutowanie w góre
 enum Note{
 	MIDDLE_C, C_SHARP, B_FLAT;
 	
