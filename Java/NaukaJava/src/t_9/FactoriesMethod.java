@@ -70,7 +70,7 @@ class Impelentation2Factory implements ServiceFactory{
 }
 
 
-public class Factories {
+public class FactoriesMethod {
 
 public static void serviceConsumer(ServiceFactory fact){
 	Service s = fact.getService();
@@ -82,5 +82,5 @@ public static void serviceConsumer(ServiceFactory fact){
 		serviceConsumer(new Impelentation2Factory());
 
 	}
-293
+//293
 }
