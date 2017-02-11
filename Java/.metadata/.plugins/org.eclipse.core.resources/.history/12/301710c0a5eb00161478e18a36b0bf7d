@@ -1,0 +1,34 @@
+package t_8;
+
+class Grain{
+	public String toString(){
+		return "Grain";
+	}
+}
+
+
+class Wheat extends Grain{
+	public String toString(){
+		return "Wheat";
+	}
+}
+
+class Mill{
+	public String toString(){
+		return "Mill";
+	}
+}
+class WheatMill extends Mill {
+	public String toString(){
+		return "Mill";
+	}
+}
+public class CovariantReturn {
+
+
+	public static void main(String[] args) {
+	
+
+	}
+
+}
