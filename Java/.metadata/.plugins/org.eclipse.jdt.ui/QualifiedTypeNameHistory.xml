@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="t_8.Instrument"/>
-<fullyQualifiedTypeName name="t_8.Wind"/>
 <fullyQualifiedTypeName name="t_8.Triangle"/>
 <fullyQualifiedTypeName name="t_8.Square"/>
 <fullyQualifiedTypeName name="t_8.Note"/>
@@ -34,7 +32,6 @@
 <fullyQualifiedTypeName name="t_9.Woodwind"/>
 <fullyQualifiedTypeName name="t_9.Instrument"/>
 <fullyQualifiedTypeName name="t_9.Stringed"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="t_9.Processor"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="t_9.Upcase"/>
@@ -48,4 +45,19 @@
 <fullyQualifiedTypeName name="t_9.CanFight"/>
 <fullyQualifiedTypeName name="t_9.CanFly"/>
 <fullyQualifiedTypeName name="t_9.CanSwim"/>
+<fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
+<fullyQualifiedTypeName name="t_11.ApplesAndOrangesWithGenerics"/>
+<fullyQualifiedTypeName name="t_11.Apple"/>
+<fullyQualifiedTypeName name="t_11.Orange"/>
+<fullyQualifiedTypeName name="t_11.GrannySmith"/>
+<fullyQualifiedTypeName name="t_11.AddingGroup"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="t_11.Slush"/>
+<fullyQualifiedTypeName name="t_11.Crusty"/>
+<fullyQualifiedTypeName name="t_11.Powder"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="t_11.Light"/>
 </qualifiedTypeNameHistroy>
