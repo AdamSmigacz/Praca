@@ -1,0 +1,23 @@
+package t_9;
+
+class Processor{
+	public String name(){
+		return getClass().getSimpleName();
+	}
+	Object process(Object input){
+		return input;
+	}
+}
+
+class Upcase extends Processor{
+	
+}
+
+public class Apply {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

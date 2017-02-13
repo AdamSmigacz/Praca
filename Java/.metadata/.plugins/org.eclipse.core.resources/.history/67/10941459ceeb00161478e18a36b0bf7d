@@ -1,0 +1,27 @@
+package t_9;
+
+interface CanFight{
+	void fight();
+}
+
+interface CanSwim{
+	void swim();
+}
+
+interface CanFly{
+	void fly();
+}
+
+class ActionCharacter{
+	void public void fight(){
+		
+	}
+}
+public class Adventure {
+
+
+	public static void main(String[] args) {
+
+	}
+
+}

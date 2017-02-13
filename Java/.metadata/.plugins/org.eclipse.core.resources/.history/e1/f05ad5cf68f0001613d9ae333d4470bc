@@ -1,0 +1,17 @@
+package t_11;
+
+import java.util.ArrayList;
+
+class Apple {}
+
+class Orange{}
+
+public class ApplesAndOrangesWithoutGenerics {
+@SuppressWarnings("unchecked")
+
+	public static void main(String[] args) {
+		
+	ArrayList apples = new ArrayList();
+
+	}
+}

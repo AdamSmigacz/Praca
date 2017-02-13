@@ -1,0 +1,13 @@
+package t_11;
+
+public class ApplesAndOrangesWithoutGenerics {
+
+	
+	
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
