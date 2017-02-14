@@ -2,7 +2,7 @@ package t_10;
 
 public class Parcel9 {
 
-	public Destination destination(final String dest){  // aby wewnetrzna klasa anonimowa moga sie odwoac do tego argumentu musi byc on finalny (jezeli jest uzywana w klasie bazowej)
+	public Destination destination(final String dest){  // aby wewnetrzna klasa anonimowa moga sie odwoac do tego argumentu musi byc on finalny (jezeli jest uzywana w klasie bazowej lub anonimowej)
 		return new Destination() {
 			private String label = dest;
 			@Override
@@ -19,5 +19,5 @@ public class Parcel9 {
 		System.out.println(d.readLabel());
 
 	}
-307
+
 }
