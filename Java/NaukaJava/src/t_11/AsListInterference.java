@@ -29,7 +29,7 @@ public class AsListInterference {
 		
 		Collections.addAll(snow4, new Light(), new Heavy());
 		
-		338
+		
 	}
 
 }
