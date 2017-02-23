@@ -26,5 +26,5 @@ public class LinkedListFeatures {
 		System.out.println(linkedlist);
 		
 	}
-
+350
 }
