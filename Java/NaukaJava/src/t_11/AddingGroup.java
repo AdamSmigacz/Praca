@@ -29,6 +29,7 @@ public class AddingGroup {
 		System.out.println(collection);
 		
 		List<Integer> list = Arrays.asList(21,22,23,24,25,26);  // rozmiaru tej listy nie mozna modyfikowac
+		//list.add(12); niemozliwe
 		System.out.println(list);
 		
 		list.set(1, 33);
