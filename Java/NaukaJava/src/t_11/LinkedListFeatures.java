@@ -24,7 +24,7 @@ public class LinkedListFeatures {
 		linkedlist.offer("Comarch SSE 7");  // dodaje elementa na koniec listy
 		linkedlist.addLast("Comarch SSE 8");  // dodaje elementa na koniec listy
 		System.out.println(linkedlist);
-		
+		System.out.println(linkedlist.size());
 	}
-350
+
 }
