@@ -1,0 +1,9 @@
+package t_11;
+
+public class Stack<T> {
+
+	public static void main(String[] args) {
+
+	}
+
+}
