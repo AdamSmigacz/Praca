@@ -9,7 +9,6 @@ class BraeBurn extends Apple{}
 
 public class GenericsAndUpcasting {
 
-
 	public static void main(String[] args) {
 		ArrayList<Apple> apples = new ArrayList<Apple>();
 		apples.add(new GrannySmith());

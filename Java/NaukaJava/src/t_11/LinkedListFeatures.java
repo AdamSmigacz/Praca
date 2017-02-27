@@ -13,8 +13,8 @@ public class LinkedListFeatures {
 		System.out.println(linkedlist);
 		System.out.println("LinkedList getFirst(): " + linkedlist.getFirst());  // pobiera pierwsyz element
 		System.out.println("LinkedList element(): " + linkedlist.element());  // pobiera pierwsyz element
-
 		System.out.println("LinkedList peek(): " + linkedlist.peek()); // kiedy lista jest pusta zwraca null (nie rzuca wyjatku)
+		
 		System.out.println("LinkedList remove(): " + linkedlist.remove()); //usuwa i zwraca pierwszy element
 		System.out.println("LinkedList peek(): " + linkedlist.removeFirst()); //usuwa i zwraca pierwszy element
 		System.out.println("LinkedList pool(): " + linkedlist.poll()); //usuwa i zwraca pierwszy element (nie rzuca wyjatku)
