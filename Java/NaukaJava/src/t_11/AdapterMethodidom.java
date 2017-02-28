@@ -65,7 +65,7 @@ public class AdapterMethodidom {
 		System.out.println();
 		for (String s : ral.reversed()) {
 			System.out.println(s + " ");
-			373
+			
 		}
 	}
 }
