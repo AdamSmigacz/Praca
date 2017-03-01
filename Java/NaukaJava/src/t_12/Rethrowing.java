@@ -24,7 +24,7 @@ public class Rethrowing {
 			System.out.println("In h() e.printStackTrace()");
 			e.printStackTrace(System.out);
 			throw (Exception)e.fillInStackTrace(); // nowy punkt pochodzenia wyjatku. Przy wywoaniu e.printStackTrace(System.out); system wskaze sciezke stosu do tego miejsca, nie dalje
-		}
+		}	
 	}
 	public static void main(String[] args) {
 	
