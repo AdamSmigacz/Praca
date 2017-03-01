@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="t_8.Triangle"/>
-<fullyQualifiedTypeName name="t_8.Square"/>
 <fullyQualifiedTypeName name="t_8.Note"/>
 <fullyQualifiedTypeName name="t_8.InstrumentM"/>
 <fullyQualifiedTypeName name="t_8.WindM"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="t_11.Light"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="t_11.Stack"/>
 </qualifiedTypeNameHistroy>
