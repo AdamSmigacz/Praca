@@ -30,7 +30,7 @@ public class StackTest{
 			stos.push(s);
 			}
 		while (!stos.isEmpty()) {
-			
+			System.out.println(stos.pop() + " ");
 			
 		}
 		
