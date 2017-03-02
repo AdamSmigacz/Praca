@@ -33,6 +33,6 @@ public class OnOffSwitch {
 		} finally{
 			sw.off(); // takie rozwiazanie powoduje ze ten element zostanie wykonany i wylacznik wpadnie w stan off (porzadane)
 		}
-		401
+		
 	}
 }
