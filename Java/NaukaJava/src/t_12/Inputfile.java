@@ -71,6 +71,6 @@ public class Inputfile {
 		ob.dispose();
     }	
 }
-411
+
 // zaraz po utworzeniu obiektu wymagajacego porzadkowania zacznij blok "try finally"
 
