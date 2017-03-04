@@ -1,0 +1,14 @@
+package t_13;
+
+public class WhitherStringBuilder {
+
+	public String implicit(String [] fields){
+		
+	}
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

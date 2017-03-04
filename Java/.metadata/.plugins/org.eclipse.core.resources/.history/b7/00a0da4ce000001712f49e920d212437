@@ -1,0 +1,12 @@
+package t_13;
+
+public class Concatenation {
+
+
+	public static void main(String[] args) {
+		
+		String mango = "Mango";
+
+	}
+
+}

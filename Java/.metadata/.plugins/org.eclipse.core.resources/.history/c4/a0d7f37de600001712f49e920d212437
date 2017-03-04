@@ -1,0 +1,15 @@
+package t_13;
+
+import java.util.Random;
+
+public class UsingStringBuilder {
+	public static Random rand = new Random(47);
+	public String toString(){
+		
+	}
+	public static void main(String[] args) {
+	
+
+	}
+
+}
