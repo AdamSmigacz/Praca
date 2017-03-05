@@ -1,0 +1,23 @@
+package t_13;
+
+import java.util.Formatter;
+
+public class Turtle {
+
+	private String name;
+	private Formatter f;
+	
+	public Turtle(String name, Formatter f){
+		this.f = f;
+		this.name = name;
+	}
+	
+	public void move(int x, int y){
+		
+	}
+	public static void main(String[] args) {
+		
+
+	}
+
+}

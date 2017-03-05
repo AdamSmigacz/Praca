@@ -16,5 +16,5 @@ public class InfiniteRecursion {
 
 		System.out.println(list);
 	}
-
+340
 }

@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="t_8.Note"/>
-<fullyQualifiedTypeName name="t_8.InstrumentM"/>
-<fullyQualifiedTypeName name="t_8.WindM"/>
-<fullyQualifiedTypeName name="t_8.PercusionM"/>
-<fullyQualifiedTypeName name="t_8.StringedM"/>
-<fullyQualifiedTypeName name="t_8.Brass"/>
-<fullyQualifiedTypeName name="t_8.WoodWind"/>
-<fullyQualifiedTypeName name="t_8.PrivateOveride"/>
-<fullyQualifiedTypeName name="t_8.Derived"/>
-<fullyQualifiedTypeName name="t_8.Sub"/>
-<fullyQualifiedTypeName name="t_8.Meal"/>
-<fullyQualifiedTypeName name="t_8.Bread"/>
-<fullyQualifiedTypeName name="t_8.Cheese"/>
 <fullyQualifiedTypeName name="t_8.Lettuce"/>
 <fullyQualifiedTypeName name="t_8.Konstruktory"/>
 <fullyQualifiedTypeName name="t_8.PortableLunch"/>
@@ -49,15 +36,28 @@
 <fullyQualifiedTypeName name="t_11.Orange"/>
 <fullyQualifiedTypeName name="t_11.GrannySmith"/>
 <fullyQualifiedTypeName name="t_11.AddingGroup"/>
-<fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="t_11.Slush"/>
 <fullyQualifiedTypeName name="t_11.Crusty"/>
 <fullyQualifiedTypeName name="t_11.Powder"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="t_11.Light"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="t_11.Stack"/>
+<fullyQualifiedTypeName name="t_13.UsingStringBuilder"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="t_13.InfiniteRecursion"/>
+<fullyQualifiedTypeName name="java.text.Format"/>
+<fullyQualifiedTypeName name="java.io.PrintStream"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="t_13.Turtle"/>
+<fullyQualifiedTypeName name="java.util.Formatter"/>
+<fullyQualifiedTypeName name="t_13.Receipt"/>
+<fullyQualifiedTypeName name="t_13.DatabaseException"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="javax.naming.BinaryRefAddr"/>
 </qualifiedTypeNameHistroy>
