@@ -19,7 +19,7 @@ public class Hex {
 		return result.toString();
 	}
 	public static void main(String[] args) throws Exception {
-440
+
 	}
 
 }
