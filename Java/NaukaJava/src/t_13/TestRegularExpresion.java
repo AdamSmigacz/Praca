@@ -12,5 +12,5 @@ public class TestRegularExpresion {
 			System.out.println("Wyra¿enie regularne: \"" + arg + "\"");
 		}
 	}
-446
+
 }
