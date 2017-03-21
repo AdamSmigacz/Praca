@@ -29,6 +29,11 @@ public class PrintingContainers {
 		System.out.println(fill(new HashMap<String, String>()));
 		System.out.println(fill(new TreeMap<String, String>()));
 		System.out.println(fill(new LinkedHashMap<String, String>()));
+		System.out.println(((LinkedList)fill(new LinkedList<String>())).get(0));
+		System.out.println(((HashMap)fill(new HashMap<String, String>())).get("Comarch CA 1")
+				+ " "
+				+ ((HashMap)fill(new HashMap<String, String>())).size()
+				);
 		
 	}
 }

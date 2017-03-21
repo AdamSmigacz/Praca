@@ -63,6 +63,6 @@ public class ArraysOptions {
 		
 		e= new int[]{1,2};
 		System.out.println("e.length: " + e.length);
-626
+
 	}
 }
