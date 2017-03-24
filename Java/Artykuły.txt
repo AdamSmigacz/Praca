@@ -1,1 +1,3 @@
 http://www.cs.put.poznan.pl/mzakrzewicz/pubs/ploug06ws.pdf
+
+http://www.algorytm.org/wzorce-projektowe/pylek-flyweight.html
