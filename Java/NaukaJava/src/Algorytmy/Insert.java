@@ -2,7 +2,7 @@ package Algorytmy;
 
 
 public class Insert {
-
+// sortowanie przez wstawianie
 	private static int tablica[] = {67, 11, 12, 4, 3, 2, 1 };
 	private static int ile_liczb;
 
