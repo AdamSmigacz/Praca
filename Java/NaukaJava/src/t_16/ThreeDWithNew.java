@@ -10,5 +10,6 @@ public class ThreeDWithNew {
 		System.out.println(Arrays.deepToString(a));
 
 	}
+	
 
 }
