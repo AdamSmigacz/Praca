@@ -29,22 +29,25 @@ public class LinkedStack<T> {
 	public void push(T item) {
 		top = new Node<T>(item, top);
 	}
-	
-	public T pop(){
+
+	public T pop() {
 		T result = top.item;
-		if(!top.end()){
+		if (!top.end()) {
 			top = top.next;
 		}
 		return result;
 	}
 
 	public static void main(String[] args) {
-		LinkedStack<String> lds =new LinkedStack<String>();
-		for(String s : "Set frase on laugh!".split(" "))
-		lds.push(s);
+
+		LinkedStack<String> lds = new LinkedStack<String>();
+
+		for (String s : "Set frase on laugh!".split(" "))
+			lds.push(s);
 		String s;
-		while((s = lds.pop()) != null)
+
+		while ((s = lds.pop()) != null)
 			System.out.println(s);
+
 	}
-523
 }
