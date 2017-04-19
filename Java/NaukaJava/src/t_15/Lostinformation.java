@@ -33,5 +33,4 @@ public class Lostinformation {
 		Class c2 = new ArrayList<String>().getClass();
 		System.out.println(Arrays.toString(c1.getTypeParameters()));
 	}
-
 }
