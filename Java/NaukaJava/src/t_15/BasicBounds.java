@@ -57,7 +57,7 @@ class ColoredDimension<T extends Dimension & HasColor> {
 interface Weight {
 	int weight();
 }
-
+// napierw klasy potem interfejsy, klasa moze byc tylko jedna po extends
 class Solid<T extends Dimension & HasColor & Weight> {
 	T item;
 
