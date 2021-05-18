@@ -1,0 +1,628 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iotconnect-app
+  labels:
+    component: iotconnect-app
+spec:
+  selector:
+    matchLabels:
+      component: iotconnect-app
+  template:
+    metadata:
+      labels:
+        component: iotconnect-app
+    spec:
+      containers:
+        - image: 10.58.132.130:8082/repository/iot-connect-release/iotconnect-app:proxi-flex6-07 #do ustalenia wersja
+          name: iotconnect-app
+          env:
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: iotconnect-app
+                  key: token
+---
+apiVersion: iotconnect.telecom.comarch/v1
+kind: IoTConnect
+metadata:
+  name: amx
+spec:
+  config:
+    repository: "10.58.132.130:8082/repository/iot-connect-release"
+    version: "proxi-flex6-07" # do ustalenia wersja jw
+    branding: "default"
+    tls:
+      - hosts:
+         - vendor.myiot-u.app.tc.corp
+         - myiot-u.app.tc.corp
+
+    #tls: # jezeli szyfrowanie nie jest na ingressie, to wywalamy cala sekcje
+    #  - hosts:
+    #      - myiot-u.app.tc.corp
+    #      - '*.myiot-u.app.tc.corp'
+    #    secretName: https-ingress-wildcard
+    globalEnv:
+      API_KEYCLOAK_REALM: "iotconnect-shared"
+      AUTH_VALID_REALM_LEVELS: "external,internal,shared"
+      CATALOGS_TO_LOAD: "proximus"
+
+      #do przedyskutowania z M. Szewczukiem
+      CLARO_EXTERNAL_DOCS_HOST: "docs.myiot-u.app.tc.corp"
+      CLARO_INTERNAL_DOCS_HOST: "docs-vendor.myiot-u.app.tc.corp"
+      AMX_EXTERNAL_DOCS_HOST: "docs.myiot-u.app.tc.corp"
+      AMX_INTERNAL_DOCS_HOST: "docs-vendor.myiot-u.app.tc.corp"
+      CENSUS_AMX_INTERNAL_HOST_HEADER: "docs-vendor.myiot-u.app.tc.corp"
+      CENSUS_AMX_EXTERNAL_HOST_HEADER: "docs.myiot-u.app.tc.corp"
+      CENSUS_A1_INTERNAL_HOST_HEADER: "docs-vendor.myiot-u.app.tc.corp"
+      CENSUS_A1_EXTERNAL_HOST_HEADER: "docs.myiot-u.app.tc.corp"
+      #zmienne specyficzne dla klienta...
+
+      TZ: "Europe/Brussels"
+      APPLICATION_RUN_MODE: "dev"
+      ES_HTTP: "http://10.35.88.103:30020,10.35.88.123:30020,10.35.88.121:30020"
+      ES_LARGE_PARTITION_COUNT: "6"
+      GRAPHIQL_AUTH_SERVER_URL: "/auth"
+      KAFKA_BOOTSTRAP_SERVERS: "10.35.88.118:30092,10.35.88.115:30092,10.35.88.108:30092"
+      KAFKA_PARTITION_COUNT: "12"
+      LOGGING_FORMAT: "plain"
+      LOGGING_LEVEL: "DEBUG"
+      LOGGING_LIB_LEVEL: "WARN"
+      MULTIPLE_REALMS_ENABLED: "true"
+      S3_ENDPOINT: "http://10.35.88.120:30900"  #minio - tutaj pod zmiane
+      S3_ACCESS_KEY: "UJVELU62JTDCGGNFZJYJ"
+      S3_SECRET_KEY: "NACBPL5P2V6HDERBTECWZP6BQU2GXNL58P6UZU4H"
+
+      #reguly klientow w keycloaku - Lukasz Dudaszek
+      SUNRISE_PLATFORM_ADMIN_REDIRECT_URIS: "/platform-admin,/platform-admin/*"
+      SUNRISE_PLATFORM_ADMIN_WEB_ORIGINS: ""
+      SUNRISE_CUSTOMER_SUPPORT_REDIRECT_URIS: "*,/customer-support,/customer-support/*"
+      SUNRISE_CUSTOMER_SUPPORT_WEB_ORIGINS: "*"
+      SUNRISE_SALES_TOOLBOX_REDIRECT_URIS: "/sales-toolbox*,/sales-toolbox,/*,/sales-toolbox/*"
+      SUNRISE_SALES_TOOLBOX_WEB_ORIGINS: ""
+      SUNRISE_BUSINESS_INTELLIGENCE_REDIRECT_URIS: "*"
+      SUNRISE_BUSINESS_INTELLIGENCE_WEB_ORIGINS: "*"
+      SUNRISE_PRODUCT_FULFILLMENT_REDIRECT_URIS: "*"
+      SUNRISE_PRODUCT_FULFILLMENT_WEB_ORIGINS: "*"
+      SUNRISE_GRAPHIQL_REDIRECT_URIS: "*"
+      SUNRISE_GRAPHIQL_WEB_ORIGINS: "*"
+      SUNRISE_VENDOR_DOCS_REDIRECT_URIS: "https://docs-vendor.myiot-u.app.tc.corp/oauth/callback"
+      SUNRISE_VENDOR_DOCS_WEB_ORIGINS: ""
+      SUNRISE_CUSTOMER_DOCS_REDIRECT_URIS: "https://docs.myiot-u.app.tc.corp/oauth/callback"
+      SUNRISE_CUSTOMER_DOCS_WEB_ORIGINS: ""
+      SUNRISE_PLATFORM_APPS_REDIRECT_URIS: "*,http://vendor.myiot-u.app.tc.corp"
+      SUNRISE_PLATFORM_APPS_WEB_ORIGINS: ""
+      SUNRISE_MY_ADMIN_REDIRECT_URIS: "https://myiot-u.app.tc.corp/my-admin,https://myiot-u.app.tc.corp/my-admin/*,/my-admin/*,/my-admin"
+      SUNRISE_MY_ADMIN_WEB_ORIGINS: "+"
+      SUNRISE_MY_SERVICE_REDIRECT_URIS: "/my-service,/my-service/*"
+      SUNRISE_MY_SERVICE_WEB_ORIGINS: ""
+      SUNRISE_INTERNAL_HEADERS_CONTENT_SECURITY_POLICY_REPORT_ONLY: ""
+      SUNRISE_INTERNAL_HEADERS_X_CONTENT_TYPE_OPTIONS: ""
+      SUNRISE_INTERNAL_HEADERS_X_ROBOTS_TAG: ""
+      SUNRISE_INTERNAL_HEADERS_X_FRAME_OPTIONS: ""
+      SUNRISE_INTERNAL_HEADERS_CONTENT_SECURITY_POLICY: ""
+      SUNRISE_INTERNAL_HEADERS_X_XSS_PROTECTION: ""
+      SUNRISE_INTERNAL_HEADERS_STRICT_TRANSPORT_SECURITY: ""
+      SUNRISE_EXTERNAL_HEADERS_CONTENT_SECURITY_POLICY_REPORT_ONLY: ""
+      SUNRISE_EXTERNAL_HEADERS_X_CONTENT_TYPE_OPTIONS: ""
+      SUNRISE_EXTERNAL_HEADERS_X_ROBOTS_TAG: ""
+      SUNRISE_EXTERNAL_HEADERS_X_FRAME_OPTIONS: ""
+      SUNRISE_EXTERNAL_HEADERS_CONTENT_SECURITY_POLICY: ""
+      SUNRISE_EXTERNAL_HEADERS_X_XSS_PROTECTION: ""
+      SUNRISE_BRUTE_FORCE_PROTECTED: "false"
+      SUNRISE_EXTERNAL_HEADERS_STRICT_TRANSPORT_SECURITY: ""
+      SUNRISE_INTERNAL_SMTP_PORT: "1025"
+      SUNRISE_INTERNAL_SMTP_HOST: "dev-mailhog"
+      SUNRISE_INTERNAL_SMTP_FROM: "keycloak@iot-connect.tc.corp"
+      SUNRISE_EXTERNAL_SMTP_PORT: "1025"
+      SUNRISE_EXTERNAL_SMTP_HOST: "dev-mailhog"
+      SUNRISE_EXTERNAL_SMTP_FROM: "keycloak@iot-connect.tc.corp"
+      SUNRISE_SUPPORTED_LOCALES: "en"
+      SUNRISE_DEFAULT_LOCALES: "en"
+
+      API_CLIENT_SECRET: "71f902ae-6906-45f2-a77a-5e3cdc557eb0" # potencjalnie do podmianki po pierwszej instalacji
+  components:
+
+    - kind: Setup
+      env:
+        - name: ES_HTTP
+          value: "http://10.35.88.103:30020"
+        - name: SHARED_REALM_PRESET
+          value: Proximus
+        - name: KEYCLOAK_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: keycloak # mock secret by default, edytowane z palca po deploymencie
+              name: amx
+
+    - kind: Catalog
+      env:
+        - name: IOT_CONNECT_VENDOR_HOST
+          value: "https://vendor-proximus.myiot-u.app.tc.corp/"
+        - name: IOT_CONNECT_CUSTOMER_HOST
+          value: "https://proximus.myiot-u.app.tc.corp"
+        - name: ES_USERNAME
+          value: "elastic"
+        - name: ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: elasticsearch-es-elastic-user
+              key: elastic        
+
+
+    - kind: Mailhog
+      name: "mailhog"
+      hostnames:
+        - "vendor.myiot-u.app.tc.corp"
+      repository: "mailhog"
+      version: "v1.0.0"
+      resources:
+        requests:
+          memory: 256Mi
+          cpu: 100m
+        limits:
+          memory: 512Mi
+          cpu: 200m
+
+    - kind: Ftp
+      name: "ftp"
+      repository: "atmoz"
+      version: "alpine-3.7"
+
+    - kind: Keycloak
+      hostnames: #for admin console access
+        - "vendor.myiot-u.app.tc.corp"
+      internalHosts:
+        - hostname: "vendor.myiot-u.app.tc.corp"
+          realm: "proximus-internal"
+        - hostname: "vendor-proximus.myiot-u.app.tc.corp"
+          realm: "proximus-internal"
+      externalHosts:
+        - hostname: "myiot-u.app.tc.corp"
+          realm: "proximus-external"
+        - hostname: "api.myiot-u.app.tc.corp"
+          realm: "proximus-external"
+        - hostname: "proximus.myiot-u.app.tc.corp"
+          realm: "proximus-external"
+        - hostname: "api-proximus.myiot-u.app.tc.corp"
+          realm: "proximus-external"
+      env:
+        - name: KEYCLOAK_PASSWORD
+          value: "admin.123"
+        - name: KEYCLOAK_USER
+          value: "admin"
+        - name: KEYCLOAK_WELCOME_THEME
+          value: "blank"
+        - name: DB_VENDOR
+          value: postgres
+        - name: DB_ADDR
+          value: "10.35.88.119"  #postgres na els-01/02
+        - name: DB_DATABASE
+          value: keycloak
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: keycloak.db-postgresql.credentials.postgresql.acid.zalan.do
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak.db-postgresql.credentials.postgresql.acid.zalan.do
+              key: password
+        - name: DB_PORT
+          value: "30046"
+        - name: SMS_SENDER
+          value: "Proximus"
+
+    - kind: Core
+      name: "core-api-vendor"
+      hostnames:
+        - "vendor.myiot-u.app.tc.corp"
+        - "vendor-proximus.myiot-u.app.tc.corp"
+      maxPrivacyLevel: "Internal"
+      env:
+        - name: HTTP_REQUEST_TIMEOUT_SECONDS
+          value: "120"      
+        - name: PIPELINES_ENABLED
+          value: "NONE"
+        - name: CENSUS_X_FORWARDED_PROTO_HEADER
+          value: "https"
+        - name: PRINTOUT_TEMPLATES_VENDOR
+          value: "proximus"
+        - name: KEYCLOAK_SETUP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: keycloak
+              name: amx
+        - name: ES_USERNAME
+          value: "elastic"
+        - name: ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: elasticsearch-es-elastic-user
+              key: elastic
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "1Gi"
+        requests:
+          cpu: "250m"
+          memory: "512Mi"
+
+    - kind: Core
+      name: "core-api-selfservice"
+      externalRealmUrls:
+        - "api.myiot-u.app.tc.corp"
+        - "api-proximus.myiot-u.app.tc.corp"
+      hostnames:
+        - "myiot-u.app.tc.corp"
+        - "proximus.myiot-u.app.tc.corp"
+      maxPrivacyLevel: "External"
+      env:
+        - name: PIPELINES_ENABLED
+          value: "NONE"
+        - name: CENSUS_CUSTOMER_X_FORWARDED_PROTO_HEADER
+          value: "https"
+        - name: KEYCLOAK_SETUP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: keycloak
+              name: amx
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "1Gi"
+        requests:
+          cpu: "250m"
+          memory: "512Mi"
+
+    - kind: Core
+      name: "core-flows"
+      nodeCount: 2
+      env:
+        - name: PIPELINES_DISABLED
+          value: "motus.usage.ingestion.scm.*,cx.smpp.*,nuntius.smpp.*"
+        - name: CENSUS_X_FORWARDED_PROTO_HEADER
+          value: "https"
+        - name: CENSUS_CUSTOMER_X_FORWARDED_PROTO_HEADER
+          value: "https"
+        - name: KEYCLOAK_SETUP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: keycloak
+              name: amx
+
+    - kind: Core
+      name: "core-scm-flows"
+      nodeCount: 2
+      env:
+        - name: PIPELINES_ENABLED
+          value: "motus.usage.ingestion.usage,motus.usage.ingestion.notification,motus.usage.ingestion.scm.*"
+        - name: RMQ_HOSTS
+          value: "10.35.88.111,10.35.88.113"
+        - name: RMQ_USAGE_QUEUES
+          value: "2"
+
+    - kind: Core
+      name: "core-sms-flows"
+      nodeCount: 1
+      env:
+        - name: PIPELINES_ENABLED
+          value: "cx.smpp.*,nuntius.smpp.*"
+
+    - kind: CnxProximus
+      name: "cnx-api"
+      version: "proxi-flex6-07"
+      hostnames:
+        - "api.myiot-u.app.tc.corp"
+        - "api-proximus.myiot-u.app.tc.corp"
+      env:
+        - name: PIPELINES_ENABLED
+          value: "NONE"
+        - name: PROXIMUS_APP_NAME
+          value: "MYIOT"
+        - name: PROXIMUS_ID_97
+          value: "id999809"
+        - name: PROXIMUS_AUTH_PASSWORD
+          value: "532S2L6X49D7"
+        - name: PROXIMUS_CONTACT_API_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CONTACT_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CONTACT_API_PATH
+          value: "CNTCTMINT/internalcontact/V2"
+        - name: PROXIMUS_QUEUE_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_QUEUE_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_QUEUE_API_PATH
+          value: "flex6"
+        - name: PROXIMUS_QUEUE_ACK_PATH
+          value: "flex6"
+        - name: PROXIMUS_QUEUE_PAGE_SIZE
+          value: "20"
+        - name: PROXIMUS_QUEUE_ACK_SIZE
+          value: "10"
+        - name: PROXIMUS_QUEUE_TICK_INTERNAL
+          value: "5.minutes"
+        - name: PROXIMUS_CONTACT_API_MNGMT_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CONTACT_API_MNGMT_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CONTACT_API_MNGMT_API_PATH
+          value: "capability/business/b472-02/services/contact/flv000283/v1"
+        - name: PROXIMUS_BPL_API_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_BPL_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_BPL_API_PATH
+          value: ""
+        - name: PROXIMUS_LOM_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_LOM_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_LOM_API_PATH
+          value: "capability/business/b503-01/services/geographicaddress/flv000248/v3"
+        - name: PROXIMUS_IDG_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_IDG_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_IDG_API_PATH
+          value: "MyIOT/SOACalls/bgc.services.idg.generate.v1"
+        - name: PROXIMUS_CDB_GET_INFO_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CDB_GET_INFO_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_GET_INFO_API_PATH
+          value: "MyIOT/SOACalls/bgc.services.bps.genericcustomer.v1"
+        - name: PROXIMUS_CDB_GET_PERSON_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CDB_GET_PERSON_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CDB_GET_PERSON_API_PATH
+          value: "B182/Person/4.0"
+        - name: PROXIMUS_CDB_BILL_ACCOUNT_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CDB_BILL_ACCOUNT_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CDB_BILL_ACCOUNT_API_PATH
+          value: "MyIOT/SOACalls/bgc.services.bps.billingaccount.v1"
+        - name: PROXIMUS_API_CLIENT_SECRET
+          value: "85317a6b-1c3c-4e6e-a2b2-d39f1d526761"
+      resources:
+        limits:
+          cpu: "200m"
+          memory: "256Mi"
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+
+    - kind: CnxProximus
+      name: "cnx-flows"
+      version: "proxi-flex6-07"
+      env:
+        - name: PROXIMUS_APP_NAME
+          value: "MYIOT"
+        - name: PROXIMUS_ID_97
+          value: "id999809"
+        - name: PROXIMUS_AUTH_PASSWORD
+          value: "532S2L6X49D7"
+        - name: PROXIMUS_CONTACT_API_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CONTACT_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CONTACT_API_PATH
+          value: "CNTCTMINT/internalcontact/V2"
+        - name: PROXIMUS_QUEUE_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_QUEUE_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_QUEUE_API_PATH
+          value: "flex6"
+        - name: PROXIMUS_QUEUE_ACK_PATH
+          value: "flex6"
+        - name: PROXIMUS_QUEUE_PAGE_SIZE
+          value: "20"
+        - name: PROXIMUS_QUEUE_ACK_SIZE
+          value: "10"
+        - name: PROXIMUS_QUEUE_TICK_INTERNAL
+          value: "5.minutes"
+        - name: PROXIMUS_CONTACT_API_MNGMT_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CONTACT_API_MNGMT_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CONTACT_API_MNGMT_API_PATH
+          value: "capability/business/b472-02/services/contact/flv000283/v1"
+        - name: PROXIMUS_BPL_API_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_BPL_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_BPL_API_PATH
+          value: ""
+        - name: PROXIMUS_LOM_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_LOM_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_LOM_API_PATH
+          value: "capability/business/b503-01/services/geographicaddress/flv000248/v3"
+        - name: PROXIMUS_IDG_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_IDG_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_IDG_API_PATH
+          value: "MyIOT/SOACalls/bgc.services.idg.generate.v1"
+        - name: PROXIMUS_CDB_GET_INFO_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CDB_GET_INFO_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_GET_INFO_API_PATH
+          value: "MyIOT/SOACalls/bgc.services.bps.genericcustomer.v1"
+        - name: PROXIMUS_CDB_GET_PERSON_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CDB_GET_PERSON_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CDB_GET_PERSON_API_PATH
+          value: "B182/Person/4.0"
+        - name: PROXIMUS_CDB_BILL_ACCOUNT_SSL_ENABLED
+          value: "false"
+        - name: PROXIMUS_CDB_BILL_ACCOUNT_API_HOST
+          value: "m2m-itt-proxy-02.tc.corp:8443"
+        - name: PROXIMUS_CDB_BILL_ACCOUNT_API_PATH
+          value: "MyIOT/SOACalls/bgc.services.bps.billingaccount.v1"
+        - name: PROXIMUS_API_CLIENT_SECRET
+          value: "85317a6b-1c3c-4e6e-a2b2-d39f1d526761"
+
+      nodeCount: 2
+      hostnames:
+        - "dummy"
+
+    - kind: IcpAmx #pojawi sie pewnie IcpProximus, ew IcpPipelines ktore jest 'mock'
+      name: "icp-amx-flows"
+      hostnames:
+        - "api.myiot-u.app.tc.corp"
+        - "api-proximus.myiot-u.app.tc.corp"
+      env:
+        # SCM Mock enabled. Comment below to deactivate.
+        - name: ICP_SCM_URL
+          value: "simProfiles/1.0/mock/success"
+        - name: ICP_SCM_ALLOWANCE_SIM_URL
+          value: "triggers/v1/mock/success"
+        - name: ICP_SCM_ALLOWANCE_CONTRACT_URL
+          value: "triggers/contract/v1/mock/success"
+        - name: ICP_SCM_ENDPOINT
+          value: "http://localhost:8080"
+        - name: ICP_SCM_ALLOWANCE_ENDPOINT
+          value: "http://localhost:8080"
+        - name: ICP_SCM_MOCK_ACTIVE
+          value: "true"
+        # SCM Mock enabled. Uncomment below to deactivate.
+#        - name: ICP_SCM_URL
+#          value: "simProfiles/1.0"
+#        - name: ICP_SCM_ALLOWANCE_SIM_URL
+#          value: "triggers/v1"
+        - name: IOT_HUB_MOCK_ACTIVE
+          value: "true"
+        - name: ICP_DIAGNOSTIC_MOCK_ACTIVE
+          value: "true"
+        - name: ICP_TELCEL_VOICE_INCOMING_BLOCKING_PRODUCTS.0
+          value: "CAR12:2,CAR15:2,CAR17:2,CAR19:2,CAR20:2,CAR22:2,CAR23:2,CAR24:2"
+        - name: ICP_TELCEL_VOICE_INCOMING_BLOCKING_PRODUCTS.1
+          value: "CAR12:3,CAR15:3,CAR17:3,CAR19:3,CAR20:3,CAR22:3,CAR23:3,CAR24:3"
+        - name: ICP_TELCEL_VOICE_OUTGOING_BLOCKING_PRODUCTS.0
+          value: "CAR12:1,CAR15:1,CAR17:1,CAR19:1,CAR20:1,CAR22:1,CAR23:1,CAR24:1"
+        - name: ICP_TELCEL_VOICE_OUTGOING_BLOCKING_PRODUCTS.1
+          value: "CAR12:2,CAR15:2,CAR17:2,CAR19:2,CAR20:2,CAR22:2,CAR23:2,CAR24:2"
+        - name: ICP_TELCEL_VOICE_OUTGOING_BLOCKING_PRODUCTS.3
+          value: "CAR12:3,CAR15:3,CAR17:3,CAR19:3,CAR20:3,CAR22:3,CAR23:3,CAR24:3"
+        - name: ICP_TELCEL_VOICE_INT_OUTGOING_BLOCKING_PRODUCTS.0
+          value: "CAR12:3,CAR15:3,CAR17:3,CAR19:3,CAR20:3,CAR22:3,CAR23:3,CAR24:3"
+        - name: ICP_TELCEL_SMS_MO_BLOCKING_PRODUCTS.0
+          value: "CAR11:1,CAR14:1,CAR17:1,CAR18:1,CAR20:1,CAR21:1,CAR23:1,CAR24:1"
+        - name: ICP_TELCEL_SMS_MO_BLOCKING_PRODUCTS.1
+          value: "CAR11:2,CAR14:2,CAR17:2,CAR18:2,CAR20:2,CAR21:2,CAR23:2,CAR24:2"
+        - name: ICP_TELCEL_SMS_MO_BLOCKING_PRODUCTS.2
+          value: "CAR17:3,CAR20:3,CAR23:3,CAR24:3"
+        - name: ICP_TELCEL_SMS_MT_BLOCKING_PRODUCTS.0
+          value: "CAR11:2,CAR14:2,CAR17:2,CAR18:2,CAR20:2,CAR21:2,CAR23:2,CAR24:2"
+        - name: ICP_TELCEL_SMS_MT_BLOCKING_PRODUCTS.1
+          value: "CAR17:3,CAR20:3,CAR23:3,CAR24:3"
+        - name: ICP_TELCEL_DATA_BLOCKING_PRODUCTS.0
+          value: "CAR10:1,CAR14:1,CAR15:1,CAR16:1,CAR20:1,CAR21:1,CAR22:1,CAR23:1"
+        - name: ICP_TELCEL_DATA_BLOCKING_PRODUCTS.1
+          value: "CAR14:2,CAR15:2,CAR20:2,CAR21:2,CAR22:2,CAR23:2"
+        - name: ICP_TELCEL_DATA_BLOCKING_PRODUCTS.2
+          value: "CAR15:3,CAR20:3,CAR22:3,CAR23:3"
+        - name: ICP_TELCEL_ROAMING_BLOCKING_PRODUCTS.0
+          value: "CAR13:1,CAR16:1,CAR18:1,CAR19:1,CAR21:1,CAR22:1,CAR23:1,CAR24:1"
+        - name: ICP_TELCEL_ROAMING_BLOCKING_PRODUCTS.1
+          value: "CAR18:2,CAR19:2,CAR21:2,CAR22:2,CAR23:2,CAR24:2"
+        - name: ICP_TELCEL_ROAMING_BLOCKING_PRODUCTS.2
+          value: "CAR19:3,CAR22:3,CAR23:3,CAR24:3"
+        - name: ICP_TELCEL_SUSPENSION_BLOCKING_PRODUCT
+          value: "CAR23"
+        - name: ICP_OCC_MOCK_ACTIVE
+          value: "true"
+        - name: ICP_SOR_MOCK_ACTIVE
+          value: "true"
+        - name: ICP_SCM_APN_SUPPORT_ENABLED
+          value: "true"
+
+    - kind: Mock
+      name: "mock"
+      hostnames:
+        - "vendor.myiot-u.app.tc.corp"
+        - "vendor-proximus.myiot-u.app.tc.corp"
+      env:
+        - name: JAVA_OPTS
+          value: "-Xmx2g"
+      resources:
+        limits:
+          cpu: "1"
+          memory: "6Gi"
+        requests:
+          cpu: "500m"
+          memory: "2Gi"
+
+    - kind: Apium #zewn api dla klientow klientow
+      hostnames:
+        - "api.myiot-u.app.tc.corp"
+        - "api-proximus.myiot-u.app.tc.corp"
+      name: "apium-api"
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "1024Mi"
+        requests:
+          cpu: "250m"
+          memory: "512Mi"
+
+    - kind: UiVendor
+      name: "ui-vendor"
+      version: "3.2.0-RC4"
+      hostnames:
+        - "vendor.myiot-u.app.tc.corp"
+        - "vendor-proximus.myiot-u.app.tc.corp"
+      resources:
+        limits:
+          cpu: "200m"
+          memory: "512Mi"
+        requests:
+          cpu: "100m"
+          memory: "256Mi"
+
+    - kind: UiSelfService
+      name: "ui-selfservice"
+      version: "3.2.0-RC4"
+      hostnames:
+        - "myiot-u.app.tc.corp"
+        - "proximus.myiot-u.app.tc.corp"
+      resources:
+        limits:
+          cpu: "200m"
+          memory: "512Mi"
+        requests:
+          cpu: "100m"
+          memory: "256Mi"
+
+    - kind: ScmProxy #wyjscie z klastra + loadbalancing/HA
+      name: "nginx-scm-proxy"
+      repository: "nginxinc"
+      version: "1.17-alpine"
+      upstream:
+        - "10.35.88.116:8001"
+
+    #remove this when agreement implementation becomes independent of this component
+    - kind: CnxSunrise
+      name: "cnx-mock"
+      env:
+        - name: PIPELINES_DISABLED
+          value: "sunrise.cnx.xip-bridge.*"
+
+    - kind: Cells
+      name: "cells"
+      imageDataVersion: 2020-11-03_1
+      resources:
+        limits:
+          ephemeral-storage: "4Gi"
+        requests:
+          ephemeral-storage: "2Gi"
